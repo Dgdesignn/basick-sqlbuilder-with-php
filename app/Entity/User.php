@@ -40,7 +40,7 @@ class User{
     }
 
 
- //actualizar
+    //actualizar
     public function remover(){
         $database = new Database("tm_user");
 
@@ -57,6 +57,13 @@ class User{
 
     public static function buscarPorId($id){
         return (new Database('tm_user'))->select('id = '.$id)
+                                        ->fetchObject(self::class);
+    }
+
+    public function iniciar(){
+
+        $where ="email = '$this->email' AND senha = '$this->senha'";
+        return (new Database('tm_user'))->select($where)
                                         ->fetchObject(self::class);
     }
     

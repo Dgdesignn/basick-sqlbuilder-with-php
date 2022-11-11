@@ -34,8 +34,9 @@ class Database{
         $limit = strlen($limit)?'LIMIT '.$limit :'';
 
         $query = "SELECT $fields FROM $this->tablename $where $order $limit";
-       
         return $this->execute($query);
+        
+        echo $query; 
     }
 
     public function insert(array $data){

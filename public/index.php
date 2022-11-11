@@ -36,10 +36,16 @@ require '../vendor/autoload.php';
     echo"</pre>";*/
 
     //REMOVER USUARIO
-   $dat = $user::buscarPorId(2);
+   //$dat = $user::buscarPorId(2); 
+   //$user->id = $dat->id;
+   //echo($user->remover());
 
-   $user->id = $dat->id;
-   echo($user->remover());
+   //LOGIN DO USUARIO
+    $user->email ="eliseu@yetosys.com";
+    $user->senha = "12@eliseu";
+    $resultado = $user->iniciar();
+    $mensagem = $resultado==""?"Usuário não encontrado":"Logado com sucesso";
 
+    echo$mensagem;
    
 ?>
