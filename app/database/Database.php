@@ -28,12 +28,13 @@ class Database{
         }
     }
 
-    public function select($where=null, $order=null, $limit=null, $fields='*'){
+    public function select($where=null, $order=null, $limit=null, $fields='*', $join=null){
         $where = strlen($where)?'WHERE '.$where :'';
         $order = strlen($order)?'ORDER BY '.$order :'';
         $limit = strlen($limit)?'LIMIT '.$limit :'';
+        $join = strlen($join)?' '.$join :'';
 
-        $query = "SELECT $fields FROM $this->tablename $where $order $limit";
+        $query = "SELECT $fields FROM $this->tablename $where $order $limit $join";
         return $this->execute($query);
         
         echo $query; 
@@ -53,7 +54,7 @@ class Database{
         return $this->connection->lastInsertId();
     }
 
-    public function update($id, $data){
+    public function update($id,array $data){
         $fields = array_keys($data);
         $values = array_values($data);
 
